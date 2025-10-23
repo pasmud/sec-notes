@@ -16,6 +16,9 @@ artifacts below are inputs for review, not instructions to exercise a live syste
 | Are privileged and service roles narrowly scoped and time-bounded where appropriate? | Review sanitized grants, approvals, and evidence of periodic access review or time-bound exception renewal. |
 | Are access decisions auditable without disclosing secrets or personal data? | Review the audit schema and a sanitized synthetic record for the decision, actor category, and timestamp. |
 
+Use the [access-control review guide](access-control-review.md) to turn these
+questions into a role/resource matrix and evidence requirements.
+
 ## Deployment configuration
 
 | Review question | Useful artifact or comparison |

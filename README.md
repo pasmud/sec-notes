@@ -11,8 +11,9 @@ still needs verification.
    [authorization worksheet](templates/authorization.md) into an approved work
    location and get written approval before reviewing artifacts.
 2. Use the [control review checklist](notes/control-review.md) to record both
-   what you reviewed and what you could not establish. Record only approved,
-   minimized evidence references in the [finding template](templates/finding.md).
+   what you reviewed and what you could not establish. For role and ownership
+   boundaries, use the [access-control review guide](notes/access-control-review.md).
+   Record only approved, minimized evidence references in the [finding template](templates/finding.md).
 3. Use [triage and verification](notes/triage-and-verification.md) to agree on
    priority, ownership, and closure criteria. The [worked report](examples/cedar-report.md)
    shows a deployment finding that closes and an access-control finding that
