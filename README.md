@@ -9,7 +9,9 @@ still needs verification.
 
 1. Start with [scope and evidence](notes/scope-and-evidence.md). Copy the
    [authorization worksheet](templates/authorization.md) into an approved work
-   location and get written approval before reviewing artifacts.
+   location and get written approval before reviewing artifacts. Use the
+   [evidence handling example](examples/cedar-evidence-handling.md) to practice
+   redaction and record a disposal deadline.
 2. Use the [control review checklist](notes/control-review.md) to record both
    what you reviewed and what you could not establish. For role and ownership
    boundaries, use the [access-control review guide](notes/access-control-review.md).

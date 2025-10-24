@@ -54,3 +54,7 @@ subject to an incident hold; follow the designated custodian's instructions.
 **Synthetic example:** `E-04 | sanitized policy snapshot | staging | fixture R8 |
 2025-10-14 09:30 UTC | Support role: export permission enabled`. The observation
 does not require a real account ID, exported record, or full role membership list.
+
+The [worked redaction and retention example](../examples/cedar-evidence-handling.md)
+shows how to keep the evidence needed for a configuration claim while removing
+instance identifiers and documenting who will dispose of each review copy.
