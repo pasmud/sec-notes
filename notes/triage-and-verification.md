@@ -37,5 +37,7 @@ name the approver, rationale, review or expiry date, and residual risk.
    coverage even when closing. Reopen if a later artifact contradicts the closure
    evidence or the affected control regresses.
 
-See the [worked report](../examples/cedar-report.md) for a closure decision based
-on an effective-state record and for a finding that remains open.
+Use the [remediation verification worksheet](../templates/remediation-verification.md)
+to track evidence against each criterion. The [worked report](../examples/cedar-report.md)
+shows an initial closure and an open finding; the [filled worksheet](../examples/cedar-remediation-verification.md)
+shows how to handle follow-up artifacts from different releases.

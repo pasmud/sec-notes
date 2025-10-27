@@ -17,9 +17,10 @@ still needs verification.
    boundaries, use the [access-control review guide](notes/access-control-review.md).
    Record only approved, minimized evidence references in the [finding template](templates/finding.md).
 3. Use [triage and verification](notes/triage-and-verification.md) to agree on
-   priority, ownership, and closure criteria. The [worked report](examples/cedar-report.md)
-   shows a deployment finding that closes and an access-control finding that
-   stays open after a proposed change.
+   priority, ownership, and closure criteria. Record the decision in the
+   [remediation verification worksheet](templates/remediation-verification.md).
+   See the [worked report](examples/cedar-report.md) for initial dispositions and
+   the [filled worksheet](examples/cedar-remediation-verification.md) for a follow-up.
 
 For a dry run, read the worked report and compare its disposition for each
 finding against the closure criteria. For real reviews, keep completed worksheets
