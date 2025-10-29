@@ -12,7 +12,13 @@ from pathlib import Path, PurePosixPath
 
 INDEX = PurePosixPath("README.md")
 SECTIONS = ("notes", "templates", "examples")
-LINK = re.compile(r"(?<!!)\[[^\[\]]+\]\(([^()]*)\)")
+# Capture a destination separately from its title. Keep a fallback so invalid
+# simple destinations still reach path validation rather than disappearing.
+LINK = re.compile(
+    r"""(?<!!)\[[^\[\]]+\]\([ \t]*(?:"""
+    r"""(<[^<>]*>|[^ \t()<>]+)(?:[ \t]+(?:"[^"]*"|'[^']*'))?[ \t]*"""
+    r"""|([^()]*))\)"""
+)
 INLINE_CODE = re.compile(r"(?<!`)`[^`]+`(?!`)")
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")
 HEADING = re.compile(r"^ {0,3}#{1,6}[ \t]+(.+)$")
@@ -57,7 +63,13 @@ def parse_page(text: str) -> tuple[Page, list[tuple[int, str]]]:
                 page.anchors[slug] = number
 
         prose = INLINE_CODE.sub(" ", line)
-        page.links.extend((number, link[1]) for link in LINK.finditer(prose))
+        for link in LINK.finditer(prose):
+            destination, fallback = link.groups()
+            if destination is None:
+                destination = fallback.rstrip(" \t")
+            elif destination.startswith("<"):
+                destination = destination[1:-1]
+            page.links.append((number, destination))
 
     if opened:
         problems.append((opened[1], "unclosed code fence"))
@@ -79,9 +91,9 @@ def link_target(source: PurePosixPath, destination: str) -> tuple[PurePosixPath,
         parents += 1
     if parents >= len(source.parts):
         raise ValueError("path leaves the notebook root")
-    tail = parts[parents:]
+    tail = parts[1 if parts[0] == "." else parents:]
     if not tail or any(p in (".", "..") or not PATH_PART.fullmatch(p) for p in tail):
-        raise ValueError("expected a relative file path with optional leading ../")
+        raise ValueError("expected a relative file path with optional leading ./ or ../")
 
     base = source.parts[: -(parents + 1)]
     return PurePosixPath(*base, *tail), fragment

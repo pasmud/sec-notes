@@ -42,6 +42,35 @@ class CheckerTests(unittest.TestCase):
         self.put("examples/report.md", "[Index](../README.md)\n")
         self.assertEqual(check(self.root), (3, []))
 
+    def test_dot_relative_and_titled_links_make_pages_reachable(self):
+        self.put("README.md", '[Guide]( ./notes/guide.md#start_here "Start (here)" )\n')
+        self.put("notes/guide.md", "# Start_here\n[Report](<../examples/report.md> 'Example')\n")
+        self.put("examples/report.md", "# Report\n")
+        self.assertEqual(check(self.root), (3, []))
+
+    def test_titled_links_report_missing_targets_and_headings(self):
+        self.put("README.md", (
+            "# Index\n"
+            '[File](./absent.md "A missing (draft)") [Section](<#typo> \'Details\')\n'
+            '[Good](<#index> "Local") [Web](<https://example.invalid/a(b)> "Web")\n'
+        ))
+        self.assertEqual(check(self.root), (1, [
+            "README.md:2: './absent.md': target does not exist",
+            "README.md:2: '#typo': heading #typo does not exist",
+        ]))
+
+    def test_link_wrappers_do_not_bypass_path_validation(self):
+        self.put("README.md", (
+            '[Spaces](< README.md> "Spaces") [Parent](./../README.md "Parent")\n'
+            '[Repeated](././README.md) [Above](<../outside.md> "Above")\n'
+        ))
+        self.assertEqual(check(self.root), (1, [
+            "README.md:1: ' README.md': expected a relative file path with optional leading ./ or ../",
+            "README.md:1: './../README.md': expected a relative file path with optional leading ./ or ../",
+            "README.md:2: '././README.md': expected a relative file path with optional leading ./ or ../",
+            "README.md:2: '../outside.md': path leaves the notebook root",
+        ]))
+
     def test_disconnected_pages_cannot_make_each_other_reachable(self):
         self.put("README.md", "# Index\n")
         self.put("notes/a.md", "[Peer](b.md)\n")

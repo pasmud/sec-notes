@@ -43,11 +43,15 @@ through local links, directly or via another notebook page. An optional root
 argument lets you run the same checks against another local notebook tree.
 
 - Use inline links such as `[Checklist](notes/control-review.md)` and
-  `[Evidence](notes/scope-and-evidence.md#evidence-handling)`. Paths are relative
+  `[Evidence](notes/scope-and-evidence.md#evidence-handling)`. Single-line links
+  also support angle brackets around the destination, surrounding whitespace,
+  and an optional single- or double-quoted title without escapes, as in
+  `[Checklist](<./notes/control-review.md> "Review steps")`. Paths are relative
   to the source page, case-sensitive on case-sensitive filesystems, with no URL
   escaping, query strings, or literal spaces. Use ASCII letters, digits, dots,
-  underscores, and hyphens in path components. Leading `../` segments are allowed
-  within the notebook root. Targets must be regular files, reached without symlinks.
+  underscores, and hyphens in path components. Use either a single leading `./`
+  or leading `../` segments that stay within the notebook root. Targets must be
+  regular files, reached without symlinks.
 - Fragments are supported for notebook Markdown pages only. Use plain ASCII ATX
   headings: for example, `## Evidence handling` gives `#evidence-handling`.
   The checker lowercases headings, replaces runs of whitespace with hyphens,
