@@ -30,6 +30,10 @@ questions into a role/resource matrix and evidence requirements.
 | Are release approvals, dependency maintenance, and rollback responsibilities clear? | Review release records, the dependency inventory and update policy, and documented recovery ownership. |
 | Are audit, retention, and recovery controls configured for this environment? | Compare effective settings with policy and review a dated, owner-provided recovery exercise summary if authorized. |
 
+The [Harbor cloud configuration case study](../examples/harbor-cloud-review.md)
+shows how to scope a retention finding when the review does not cover every
+possible log destination.
+
 If two artifacts disagree, record the discrepancy and ask the owner which revision
 and source describe the effective control. An intended baseline or proposed change
 alone does not demonstrate behavior. Use [triage and verification](triage-and-verification.md)

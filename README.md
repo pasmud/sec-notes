@@ -22,9 +22,11 @@ still needs verification.
    See the [worked report](examples/cedar-report.md) for initial dispositions and
    the [filled worksheet](examples/cedar-remediation-verification.md) for a follow-up.
 
-For a dry run, read the worked report and compare its disposition for each
-finding against the closure criteria. For real reviews, keep completed worksheets
-and evidence in your organization's approved storage, not in this repository.
+For a dry run, compare each Cedar Desk disposition with its closure criteria,
+or use the [cloud configuration case study](examples/harbor-cloud-review.md)
+to practice reconciling an approved baseline, a proposed change, and effective
+settings. For real reviews, keep completed worksheets and evidence in your
+organization's approved storage, not in this repository.
 
 ## Offline documentation checks
 
